@@ -1,5 +1,8 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+#updated 20190312 
+#Removed screen two (joy con connection screen) and added indicators to the selection screen. Auto scaling removed from RUN THE PROGRAM
+# due to uresolved issues with it pulling the resolution data. 
 
 from time import sleep
 import wx
@@ -106,32 +109,35 @@ class MyForm(wx.Frame):
         self.panel_one.SetSize((width, height))
         self.panel_two.SetSize((width, height))
         self.panel_three.SetSize((width, height))
-        self.panel_one.Hide()
+        self.panel_one.Show()
+        self.panel_two.Hide()
         self.panel_three.Hide()
-        self.panel_two.SetBackgroundColour(wx.WHITE)
+        #self.panel_two.SetBackgroundColour(wx.BLACK)
+	self.panel_one.SetForegroundColour(wx.WHITE)
+        self.panel_one.SetBackgroundColour(wx.BLACK)
         
-        right = wx.Bitmap("/opt/retropie/configs/all/NewTouchBoot/right.jpg", wx.BITMAP_TYPE_ANY)
-        self.panel_two.rcon = wx.StaticBitmap(self.panel_two, id=wx.ID_ANY, bitmap=right, pos=(width/2 + 220, 100))
-        left = wx.Bitmap("/opt/retropie/configs/all/NewTouchBoot/left.jpg", wx.BITMAP_TYPE_ANY)
-        self.panel_two.lcon = wx.StaticBitmap(self.panel_two, id=wx.ID_ANY, bitmap=left, pos=(width/2 - 350, 100))
-        self.panel_two.button = wx.Button(self.panel_two, wx.ID_ANY, 'Skip', pos=(width/2 - 50, height/2 + 120), size=(100, 50))
-        self.panel_two.button.Bind(wx.EVT_BUTTON, self.PressedButton)
+        #right = wx.Bitmap("/opt/retropie/configs/all/NewTouchBoot/right.jpg", wx.BITMAP_TYPE_ANY)
+        #self.panel_two.rcon = wx.StaticBitmap(self.panel_two, id=wx.ID_ANY, bitmap=right, pos=(width/2 + 220, 100))
+        #left = wx.Bitmap("/opt/retropie/configs/all/NewTouchBoot/left.jpg", wx.BITMAP_TYPE_ANY)
+        #self.panel_two.lcon = wx.StaticBitmap(self.panel_two, id=wx.ID_ANY, bitmap=left, pos=(width/2 - 350, 100))
+        #self.panel_two.button = wx.Button(self.panel_two, wx.ID_ANY, 'Skip', pos=(width/2 - 50, height/2 + 120), size=(100, 50))
+        #self.panel_two.button.Bind(wx.EVT_BUTTON, self.PressedButton)
         
-        self.panel_two.lbl = wx.StaticText(self.panel_two, wx.ID_ANY, pos=(width/2 - 225, 10), style = wx.ALIGN_CENTER)
-        txt1 = "To Connect Your Joy-Con Controllers" 
-        txt2 = "Press the Plus and Minus Buttons" 
-        txt3 = "A Check Box Will Appear to Indicate Success." 
-        txt = txt1+"\n"+txt2+"\n"+txt3
-        font = wx.Font(18, wx.ROMAN, wx.ITALIC, wx.NORMAL)
-        self.panel_two.lbl.SetFont(font)
-        self.panel_two.lbl.SetLabel(txt)
+       # self.panel_two.lbl = wx.StaticText(self.panel_two, wx.ID_ANY, pos=(width/2 - 225, 10), style = wx.ALIGN_CENTER)
+       # txt1 = "To Connect Your Joy-Con Controllers" 
+       # txt2 = "Press Any Button" 
+       # txt3 = "A Check Box Will Appear to Indicate Success." 
+       # txt = txt1+"\n"+txt2+"\n"+txt3
+        font = wx.Font(18, wx.ROMAN, wx.NORMAL, wx.NORMAL)
+       # self.panel_two.lbl.SetFont(font)
+       # self.panel_two.lbl.SetLabel(txt)
 
         check = wx.Bitmap("/opt/retropie/configs/all/NewTouchBoot/check.png", wx.BITMAP_TYPE_ANY)
         check = scale_bitmap(check, 50, 50)
-        self.panel_two.checkconr = wx.StaticBitmap(self.panel_two, id=wx.ID_ANY, bitmap=check, pos=(width/2 + 250, 30))
-        self.panel_two.checkconl = wx.StaticBitmap(self.panel_two, id=wx.ID_ANY, bitmap=check, pos=(width/2 - 310, 30))
-        self.panel_two.checkconl.Hide()
-        self.panel_two.checkconr.Hide()
+        self.panel_one.checkconr = wx.StaticBitmap(self.panel_one, id=wx.ID_ANY, bitmap=check, pos=(width/2 + 250, height/2))
+        self.panel_one.checkconl = wx.StaticBitmap(self.panel_one, id=wx.ID_ANY, bitmap=check, pos=(width/2 - 310, height/2))
+        self.panel_one.checkconl.Hide()
+        self.panel_one.checkconr.Hide()
         
         self.panel_three.OnePlayer = wx.Button(self.panel_three, wx.ID_ANY, 'One Player', pos=(width/2 - 300, height/2 - 150), size=(600, 150))
         self.panel_three.OnePlayer.SetFont(font)
@@ -149,10 +155,20 @@ class MyForm(wx.Frame):
         tbbmp = wx.Bitmap("/opt/retropie/configs/all/NewTouchBoot/terminal.png", wx.BITMAP_TYPE_ANY)
         tbbmp = scale_bitmap(tbbmp, width/2, height/2)
 
-        self.panel_one.rpb = wx.BitmapButton(self.panel_one, bitmap=rpbmp, pos=(0,0), size=(width/2,height/2))
-        self.panel_one.kb = wx.BitmapButton(self.panel_one, bitmap=kbbmp, pos=(width/2, 0), size=(width/2,height/2))
-        self.panel_one.rb = wx.BitmapButton(self.panel_one, bitmap=rbbmp, pos=(0, height/2), size=(width/2,height/2))
-        self.panel_one.tb = wx.BitmapButton(self.panel_one, bitmap=tbbmp, pos=(width/2, height/2), size=(width/2,height/2))
+        self.panel_one.txt1 = wx.StaticText(self.panel_one, wx.ID_ANY, 'Joy-Con (L)',  pos=(width/2-225,height/2), style = wx.ALIGN_CENTER)
+        self.panel_one.txt1.SetFont(font)
+        self.panel_one.txt2 = wx.StaticText(self.panel_one, wx.ID_ANY, 'Joy-Con (R)',  pos=(width/2+125,height/2), style = wx.ALIGN_CENTER)
+        self.panel_one.txt2.SetFont(font)
+        #txt1 = "Joy Con (L)"
+        #txt2 = "Joy Con (R)"
+        #txt = txt1+txt2
+       # font = wx.Font(18, wx.ROMAN, wx.NORMAL, wx.NORMAL)
+       # self.panel_one.lbl.SetFont(font)
+       # self.panel_one.lbl.SetLabel(txt)
+        self.panel_one.rpb = wx.BitmapButton(self.panel_one, bitmap=rpbmp, pos=(0,0), size=(width/2-25,height/2-25))
+        self.panel_one.kb = wx.BitmapButton(self.panel_one, bitmap=kbbmp, pos=(width/2+25, 0), size=(width/2-25,height/2-25))
+        self.panel_one.rb = wx.BitmapButton(self.panel_one, bitmap=rbbmp, pos=(0, height/2+50), size=(width/2-25,height/2-25))
+        self.panel_one.tb = wx.BitmapButton(self.panel_one, bitmap=tbbmp, pos=(width/2+25, height/2+50), size=(width/2-25,height/2-25))
         
         self.panel_one.rpb.Bind(wx.EVT_BUTTON, self.Pressedrpb)
         self.panel_one.kb.Bind(wx.EVT_BUTTON, self.Pressedkb)
@@ -174,37 +190,37 @@ class MyForm(wx.Frame):
         global jconr
         global jconl
         if jconr is True:
-            self.panel_two.checkconr.Show()
+            self.panel_one.checkconr.Show()
         if jconl is True:
-            self.panel_two.checkconl.Show()
+            self.panel_one.checkconl.Show()
             if jconr is True:
-                self.panel_two.timer.Stop()
-                self.panel_two.button.SetLabel("Next")
+                self.panel_one.timer.Stop()
+               
             
     def PressedButton(self, e):
         global jconr
         global jconl
         jconr=True
         jconl=True
-        self.panel_two.timer.Stop()
-        self.panel_two.Hide()
-        self.panel_one.Show()
+        self.panel_one.timer.Stop()
+       # self.panel_one.Hide()
+        self.panel_three.Show()
         
     def Pressedrpb(self, e):
         self.panel_one.Hide()
         self.panel_three.Show()
         
     def PressedOnePlayer(self, e):
-        fileopen('/opt/retropie/configs/all/NewTouchBoot/mounts')
-        sleep(0.1)
+       # fileopen('/opt/retropie/configs/all/NewTouchBoot/mounts')
+       # sleep(0.1)
         f = open("/opt/retropie/configs/all/NewTouchBoot/checknum","w")
         f.write("num=1")
         f.close()
         exit()
         
     def PressedTwoPlayers(self, e):
-        fileopen('/opt/retropie/configs/all/NewTouchBoot/mounts')
-        sleep(0.1)
+       # fileopen('/opt/retropie/configs/all/NewTouchBoot/mounts')
+       # sleep(0.1)
         f = open("/opt/retropie/configs/all/NewTouchBoot/checknum","w")
         f.write("num=5")
         f.close()
@@ -212,8 +228,8 @@ class MyForm(wx.Frame):
 
     def Pressedkb(self, e):
 
-        fileopen('/opt/retropie/configs/all/NewTouchBoot/mounts')
-        sleep(0.1)
+       # fileopen('/opt/retropie/configs/all/NewTouchBoot/mounts')
+       # sleep(0.1)
         f = open("/opt/retropie/configs/all/NewTouchBoot/checknum","w")
         f.write("num=2")
         f.close()
@@ -221,8 +237,8 @@ class MyForm(wx.Frame):
 
     def Pressedrb(self, e):
 
-        fileopen('/opt/retropie/configs/all/NewTouchBoot/mounts')
-        sleep(0.1)
+       # fileopen('/opt/retropie/configs/all/NewTouchBoot/mounts')
+       # sleep(0.1)
         f = open("/opt/retropie/configs/all/NewTouchBoot/checknum","w")
         f.write("num=3")
         f.close()
@@ -230,8 +246,8 @@ class MyForm(wx.Frame):
 
     def Pressedtb(self, e):
 
-        fileopen('/opt/retropie/configs/all/NewTouchBoot/mounts')
-        sleep(0.1)
+       # fileopen('/opt/retropie/configs/all/NewTouchBoot/mounts')
+       # sleep(0.1)
         f = open("/opt/retropie/configs/all/NewTouchBoot/checknum","w")
         f.write("num=4")
         f.close()
@@ -247,11 +263,13 @@ if __name__ == "__main__":
     p = subprocess.Popen(cmd, stdout=subprocess.PIPE)
     p2 = subprocess.Popen(cmd2, stdin=p.stdout, stdout=subprocess.PIPE)
     p.stdout.close()
-    resolution_string, junk = p2.communicate()
-    resolution = resolution_string.split()[0]
-    strwidth, strheight = resolution.split('x')
-    width=int(strwidth)
-    height=int(strheight)
+   # resolution_string = p2.communicate()[1]
+   # resolution = resolution_string.split()
+   # strwidth, strheight = resolution('x')
+    width=800
+    height=480
+    width=840
+    height=480
     ex = wx.App()
     MyForm(None)
     TestThread().start()
