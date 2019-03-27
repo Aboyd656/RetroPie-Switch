@@ -43,5 +43,7 @@ The step up regulator has a low voltage cut off of 2.5v, which is ok for this be
 
 # Programming: 
 
+Initial Joycon Pairing:
+
 
 
