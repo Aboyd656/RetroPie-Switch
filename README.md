@@ -43,7 +43,30 @@ The step up regulator has a low voltage cut off of 2.5v, which is ok for this be
 
 # Programming: 
 
-Initial Joycon Pairing:
+Start emulation station with a usb keyboard connected. Configure the input to these keys:
 
-
-
+- D-PAD UP > arrow up
+- D-PAD DOWN > arrow down
+- D-PAD LEFT > arrow left
+- D-PAD RIGHT > arrow right
+- START > alt left
+- SELECT > alt right
+- A > a  
+- B > b
+- X > x
+- Y > y
+- LEFT SHOULDER > o
+- RIGHT SHOULDER > u
+- LEFT TRIGGER > p
+- RIGHT TRIGGER > z
+- LEFT THUMB > m 
+- RIGHT THUMB > n
+- LEFT ANALOG UP > g
+- LEFT ANALOG DOWN > t
+- LEFT ANALOG LEFT > f
+- LEFT ANALOG RIGHT > h
+- RIGHT ANALOG UP > 0
+- RIGHT ANALOG DOWN > 1
+- RIGHT ANALOG LEFT > 2
+- RIGHT ANALOG RIGHT > 3
+- HOTKEY ENABLE > escape key
