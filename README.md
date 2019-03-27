@@ -70,3 +70,20 @@ Start emulation station with a usb keyboard connected. Configure the input to th
 - RIGHT ANALOG LEFT > 2
 - RIGHT ANALOG RIGHT > 3
 - HOTKEY ENABLE > escape key
+
+After you have configured the keyboard, navigate to the bluetooth setup in RetroPie Setup
+
+- Grab the left Joycon and select Register Bluetooth Device using the keyboard.
+  - Press the pairing button on the inside of the joycon and wait for the Pi to pick it up. **MAKE NOTE OF THE MAC ADDRESS FOR THE CONTROLLER!**
+  - Select No input/ No Output 
+- Repeat this for the right Joycon
+
+# INSTALLATION OPTIONS
+
+SSH into your raspberry pi. There are setup files for either individual installations, ie just Joy Con or just Display Switching, and a file for installing all three together. 
+
+Joy Con control, Display Switching, and Touch boot screen
+
+sudo wget https://github.com/Aboyd656/RetroPie-Switch/blob/master/setup_all.sh
+      
+
