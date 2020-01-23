@@ -1,4 +1,4 @@
-# RetroPie-Switch
+# RetroPie-Switch: this guide is still a work in progress
 
 ![RetroPie-Switch](https://i.imgur.com/a2dWYAJ.jpg)
 
