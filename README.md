@@ -1,4 +1,4 @@
-# RetroPie-Switch: this guide is still a work in progress
+# RetroPie-Switch: THIS PROJECT IS NO LONGER SUPPORTED, JUST BUY A STEAM DECK
 
 ![RetroPie-Switch](https://i.imgur.com/a2dWYAJ.jpg)
 
